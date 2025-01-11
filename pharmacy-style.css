@@ -1,0 +1,56 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  .banner {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('images/pharmacy\ background.jpg') no-repeat center center/cover;
+    color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .banner-content {
+    max-width: 600px;
+  }
+  
+  .banner h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .banner p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .banner a {
+    background-color: #5b84b1; /* Muted blue */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+   
+  }
+  
+  .banner a:hover {
+    background-color: #436d91; /* Slightly darker muted blue */
+  }
+  
+  
+  
+  

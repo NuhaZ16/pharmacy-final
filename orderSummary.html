@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Form with Validations</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+
+
+  
+  <div class="order-container">
+    <h1>ORDER FORM</h1>
+    <section>
+      <h2>Your Order</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="order-summary"></tbody>
+      </table>
+      <div>
+        <h3 id="order-total"></h3>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const orderSummary = document.getElementById("order-summary");
+      const orderTotal = document.getElementById("order-total");
+
+      // Retrieve stored data
+      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const total = localStorage.getItem("total");
+
+       // Populate table
+       cartItems.forEach((item) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.price}</td>
+          <td>${item.quantity}</td>
+          <td>${item.total}</td>
+        `;
+        orderSummary.appendChild(row);
+      });
+
+      // Display total price
+      orderTotal.textContent = total || "Total: Rs 0";
+    });
+  </script>
+
+
+    <form id="order-form">
+      <h2>Personal Details</h2>
+      <label for="name">Name:</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        placeholder="Enter your full name" 
+        pattern="[A-Za-z\s]+" 
+        title="Name must contain only letters and spaces" 
+        required>
+      
+      <label for="email">Email:</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required>
+      
+      <h2>Delivery Details</h2>
+      <label for="address">Address:</label>
+      <textarea 
+        id="address" 
+        name="address" 
+        placeholder="Enter your full address" 
+        minlength="10" 
+        title="Address must be at least 10 characters long" 
+        rows="3" 
+        required></textarea>
+      
+      <label for="date">Delivery Date:</label>
+      <input 
+        type="date" 
+        id="date" 
+        name="date" 
+        min="<?= date('Y-m-d') ?>" 
+        required>
+      
+      <h2>Payment Information</h2>
+
+      <label for="card-type">Card Type:</label>
+<div id="card-type">
+
+  <input type="radio" id="american-express" name="card-type" value="american-express">
+  <label for="american-express">
+    <img src="images/american.webp" alt="American Express" class="card-icon">
+    American Express
+  </label>
+
+  <input type="radio" id="visa-card" name="card-type" value="visa">
+  <label for="visa-card">
+    <img src="images/visa.webp" alt="Visa Card" class="card-icon">
+    Visa Card
+  </label>
+</div>
+
+      <label for="card">Card Number:</label>
+      <input 
+        type="text" 
+        id="card" 
+        name="card" 
+        placeholder="Enter your 16-digit card number" 
+        pattern="\d{16}" 
+        title="Card number must be 16 digits" 
+        maxlength="16" 
+        required>
+      
+      <label for="expiry">Expiry Date:</label>
+      <input 
+        type="month" 
+        id="expiry" 
+        name="expiry" 
+        required>
+      
+      <label for="cvv">CVV:</label>
+      <input 
+        type="text" 
+        id="cvv" 
+        name="cvv" 
+        placeholder="Enter 3-digit CVV" 
+        pattern="\d{3}" 
+        title="CVV must be 3 digits" 
+        maxlength="3" 
+        required>
+      
+      <button type="submit" id="pay-button">Pay</button>
+    </form>
+  </div>
+  <script src="order.js"></script>
+</body>
+</html>           
+
+
+
